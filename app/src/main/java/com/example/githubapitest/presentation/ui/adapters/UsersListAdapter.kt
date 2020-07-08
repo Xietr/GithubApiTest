@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.githubapitest.R
 import com.example.githubapitest.domain.entities.UserEntity
 import kotlinx.android.synthetic.main.list_item_user.view.*
@@ -30,7 +29,7 @@ class UsersListAdapter :
             with(itemView) {
                 Glide.with(context)
                     .load(userEntity.avatarUrl)
-                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .centerInside()
                     .into(listUserImageView)
 
                 listUserLoginTextView.text = userEntity.login

@@ -17,6 +17,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
+            tools:src="@drawable/ic_github_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,10 +29,11 @@
             android:layout_margin="8dp"
             android:textColor="@color/design_default_color_on_secondary"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/listUserImageView"
+            android:maxLines="3"
+            app:layout_constraintBottom_toBottomOf="@id/listUserImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/listUserImageView"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/listUserImageView"
             tools:text="@string/list_user_login" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
