@@ -15,7 +15,7 @@ class LinearPaginationScrollListener(
         val totalItemCount = linearLayoutManager.itemCount
         val firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition()
 
-        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
+        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount - 6 && firstVisibleItemPosition >= 0) {
             loadMoreItems.invoke()
         }
     }

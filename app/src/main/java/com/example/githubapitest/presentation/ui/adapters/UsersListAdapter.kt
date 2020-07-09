@@ -11,20 +11,22 @@ import com.example.githubapitest.R
 import com.example.githubapitest.domain.entities.UserEntity
 import kotlinx.android.synthetic.main.list_item_user.view.*
 
-class UsersListAdapter :
+class UsersListAdapter(private val onItemCLicked: (String) -> Unit) :
     ListAdapter<UserEntity, UsersListAdapter.UserViewHolder>(UserDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.list_item_user, parent, false)
-        return UserViewHolder(view)
+        return UserViewHolder(view, onItemCLicked)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class UserViewHolder(itemView: View, private val onItemCLicked: (String) -> Unit) :
+        RecyclerView.ViewHolder(itemView) {
+
         fun bind(userEntity: UserEntity) {
             with(itemView) {
                 Glide.with(context)
@@ -33,6 +35,10 @@ class UsersListAdapter :
                     .into(listUserImageView)
 
                 listUserLoginTextView.text = userEntity.login
+
+                setOnClickListener {
+                    onItemCLicked.invoke(userEntity.login)
+                }
             }
         }
     }

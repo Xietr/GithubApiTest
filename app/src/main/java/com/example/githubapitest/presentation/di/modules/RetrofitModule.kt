@@ -2,6 +2,7 @@ package com.example.githubapitest.presentation.di.modules
 
 import com.example.githubapitest.BuildConfig
 import com.example.githubapitest.data.retrofit.GithubService
+import com.example.githubapitest.data.retrofit.interceptors.HeaderInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -43,11 +44,12 @@ class RetrofitModule {
 
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(HeaderInterceptor())
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideGson(): Gson = GsonBuilder().create()
+    fun provideGson(): Gson = GsonBuilder().setDateFormat("YYYY-MM-DDHH:MM:SSZ").create()
 
 }

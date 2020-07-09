@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">GithubApiTest</string>
 
+    <!--Screens-->
+    <string name="users_screen">Github Users</string>
+
     <!--TOOLS:TEXT-->
-    <string name="list_user_login">wayneeseguin</string>
+    <string name="user_login">wayneeseguin</string>
+    <string name="user_name">Jake Wharton</string>
+    <string name="user_bio">Freelance Software Engineer</string>
 </resources>

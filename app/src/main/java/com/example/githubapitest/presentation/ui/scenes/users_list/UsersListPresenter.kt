@@ -2,18 +2,20 @@ package com.example.githubapitest.presentation.ui.scenes.users_list
 
 import com.example.githubapitest.domain.entities.UserEntity
 import com.example.githubapitest.domain.interactors.GetUsersUseCase
+import com.example.githubapitest.presentation.ui.base.BasePresenter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
-import moxy.MvpPresenter
 import retrofit2.HttpException
 import javax.inject.Inject
 
 
 class UsersListPresenter @Inject constructor(private val getUsersUseCase: GetUsersUseCase) :
-    MvpPresenter<UsersListView>() {
+    BasePresenter<UsersListView>() {
 
     private var lastId = 0
     private var allLoadedUsers = arrayListOf<UserEntity>()
+    private var isLoading = false
 
 
     override fun onFirstViewAttach() {
@@ -22,11 +24,19 @@ class UsersListPresenter @Inject constructor(private val getUsersUseCase: GetUse
     }
 
     fun getUsers() {
+        if (isLoading) return
+
         getUsersUseCase(lastId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { viewState.setIsProgressBarVisible(true) }
-            .doFinally { viewState.setIsProgressBarVisible(false) }
+            .doOnSubscribe {
+                isLoading = true
+                viewState.setIsProgressBarVisible(true)
+            }
+            .doFinally {
+                isLoading = false
+                viewState.setIsProgressBarVisible(false)
+            }
             .subscribe({
                 allLoadedUsers.addAll(it)
                 viewState.updateAdapter(allLoadedUsers)
@@ -35,12 +45,14 @@ class UsersListPresenter @Inject constructor(private val getUsersUseCase: GetUse
                 it.printStackTrace()
 
                 val message = if (it is HttpException) {
-                    "error code: ${it.code()}" + it.message()
+                    "error code: ${it.code()} " + it.message()
                 } else {
                     it.localizedMessage
                 } ?: "unexpected error"
 
                 viewState.showToast("\uD83D\uDE28" + message)
-            })
+            }).addTo(compositeDisposable)
     }
+
+    fun onItemClicked(login: String) = viewState.navigateToDetailedUserFragment(login)
 }

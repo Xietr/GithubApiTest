@@ -2,7 +2,7 @@ package com.example.githubapitest.domain.entities
 
 import com.google.gson.annotations.SerializedName
 
-data class UserEntity (
+data class UserEntity(
     val login: String,
     val id: Int,
     @SerializedName("node_id")

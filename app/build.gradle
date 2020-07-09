@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 30
@@ -62,9 +63,9 @@ dependencies {
 
     //Rx
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.4'
+    implementation "io.reactivex.rxjava3:rxkotlin:3.0.0"
 
-    //OkHttp
+    //OkHttp logging
     implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
 
     //Glide
@@ -77,4 +78,7 @@ dependencies {
     implementation "com.github.moxy-community:moxy-androidx:$moxy"
     implementation "com.github.moxy-community:moxy-ktx:$moxy"
 
+    //Navigation Component
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_component"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_component"
 }
