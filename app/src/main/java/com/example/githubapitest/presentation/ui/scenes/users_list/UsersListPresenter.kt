@@ -50,7 +50,7 @@ class UsersListPresenter @Inject constructor(private val getUsersUseCase: GetUse
                     it.localizedMessage
                 } ?: "unexpected error"
 
-                viewState.showToast("\uD83D\uDE28" + message)
+                viewState.showSnackbarWithAction("\uD83D\uDE28 $message", "Retry", ::getUsers)
             }).addTo(compositeDisposable)
     }
 

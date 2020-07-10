@@ -6,5 +6,8 @@ import moxy.viewstate.strategy.alias.Skip
 interface BaseView : MvpView {
 
     @Skip
-    fun showToast(message: String)
+    fun showSnackbar(message: String)
+
+    @Skip
+    fun showSnackbarWithAction(message: String, actionName: String, action: () -> Unit)
 }

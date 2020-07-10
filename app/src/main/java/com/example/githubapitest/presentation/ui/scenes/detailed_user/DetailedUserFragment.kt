@@ -2,7 +2,9 @@ package com.example.githubapitest.presentation.ui.scenes.detailed_user
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.githubapitest.R
@@ -35,10 +37,18 @@ class DetailedUserFragment : BaseFragment<DetailedUserPresenter>(R.layout.detail
         (requireActivity().application as App).appComponent.inject(this)
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        presenter.login = args.login
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        presenter.getDetailedUser(args.login)
+        presenter.getDetailedUser()
     }
 
     override fun showData(detailedUserEntity: DetailedUserEntity) {

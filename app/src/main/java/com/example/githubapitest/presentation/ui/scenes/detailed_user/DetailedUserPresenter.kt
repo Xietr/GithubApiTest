@@ -11,8 +11,10 @@ import javax.inject.Inject
 class DetailedUserPresenter @Inject constructor(private val getDetailedUserUseCase: GetDetailedUserUseCase) :
     BasePresenter<DetailedUserView>() {
 
+    lateinit var login: String
 
-    fun getDetailedUser(login: String) {
+
+    fun getDetailedUser() {
         getDetailedUserUseCase(login)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -27,7 +29,11 @@ class DetailedUserPresenter @Inject constructor(private val getDetailedUserUseCa
                     it.localizedMessage
                 } ?: "unexpected error"
 
-                viewState.showToast("\uD83D\uDE28" + message)
+                viewState.showSnackbarWithAction(
+                    "\uD83D\uDE28 $message",
+                    "Retry",
+                    ::getDetailedUser
+                )
             }).addTo(compositeDisposable)
     }
 }
