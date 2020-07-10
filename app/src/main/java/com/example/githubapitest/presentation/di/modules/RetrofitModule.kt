@@ -2,7 +2,7 @@ package com.example.githubapitest.presentation.di.modules
 
 import com.example.githubapitest.BuildConfig
 import com.example.githubapitest.data.retrofit.GithubService
-import com.example.githubapitest.data.retrofit.interceptors.HeaderInterceptor
+import com.example.githubapitest.data.retrofit.interceptors.HeadersInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -44,7 +44,7 @@ class RetrofitModule {
 
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(HeaderInterceptor())
+            .addInterceptor(HeadersInterceptor())
             .build()
     }
 

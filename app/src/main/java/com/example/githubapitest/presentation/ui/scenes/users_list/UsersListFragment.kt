@@ -45,7 +45,7 @@ class UsersListFragment : BaseFragment<UsersListPresenter>(R.layout.users_list_f
         if (savedInstanceState != null) {
             val savedRecyclerLayoutState =
                 savedInstanceState.getParcelable<Parcelable>(LIST_STATE_KEY)
-            recyclerView.layoutManager!!.onRestoreInstanceState(savedRecyclerLayoutState)
+            recyclerView?.layoutManager?.onRestoreInstanceState(savedRecyclerLayoutState)
         }
     }
 
@@ -53,12 +53,12 @@ class UsersListFragment : BaseFragment<UsersListPresenter>(R.layout.users_list_f
         super.onSaveInstanceState(outState)
         outState.putParcelable(
             LIST_STATE_KEY,
-            recyclerView.layoutManager!!.onSaveInstanceState()
+            recyclerView?.layoutManager?.onSaveInstanceState()
         )
     }
 
     override fun updateAdapter(users: List<UserEntity>) {
-        adapter.submitList(users)
+        adapter.submitList(users.toList())//to pass the check of a new list
     }
 
     override fun setIsProgressBarVisible(isVisible: Boolean) =
