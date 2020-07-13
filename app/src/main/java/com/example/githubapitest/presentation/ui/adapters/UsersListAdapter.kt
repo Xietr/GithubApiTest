@@ -11,13 +11,13 @@ import com.example.githubapitest.R
 import com.example.githubapitest.domain.entities.UserEntity
 import kotlinx.android.synthetic.main.list_item_user.view.*
 
-class UsersListAdapter(private val onItemCLicked: (String) -> Unit) :
+class UsersListAdapter(private val onItemClicked: (String) -> Unit) :
     ListAdapter<UserEntity, UsersListAdapter.UserViewHolder>(UserDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.list_item_user, parent, false)
-        return UserViewHolder(view, onItemCLicked)
+        return UserViewHolder(view, onItemClicked)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {

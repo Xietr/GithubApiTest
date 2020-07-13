@@ -33,12 +33,11 @@ abstract class BaseFragment<P : BasePresenter<*>>(layoutId: Int) :
     ): Snackbar? {
         return view?.let {
             val snackbar = Snackbar.make(it, message, length)
-            val view = snackbar.view
-            view.findViewById<TextView>(R.id.snackbar_action).setTextSize(
+            it.findViewById<TextView>(R.id.snackbar_action).setTextSize(
                 TypedValue.COMPLEX_UNIT_SP,
                 resources.getDimension(R.dimen.snackbar_size)
             )
-            view.findViewById<TextView>(R.id.snackbar_text).setTextSize(
+            it.findViewById<TextView>(R.id.snackbar_text).setTextSize(
                 TypedValue.COMPLEX_UNIT_SP,
                 resources.getDimension(R.dimen.snackbar_size)
             )
