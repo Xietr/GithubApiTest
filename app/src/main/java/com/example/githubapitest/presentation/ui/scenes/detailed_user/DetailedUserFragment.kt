@@ -5,29 +5,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.githubapitest.R
 import com.example.githubapitest.domain.entities.DetailedUserEntity
 import com.example.githubapitest.presentation.App
 import com.example.githubapitest.presentation.ui.base.BaseFragment
-import com.example.githubapitest.presentation.ui.extensions.setIsVisible
 import com.example.githubapitest.presentation.ui.extensions.setTextOrMakeGone
 import kotlinx.android.synthetic.main.detailed_user_fragment.*
-import moxy.ktx.moxyPresenter
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
-import javax.inject.Provider
 
 
-class DetailedUserFragment : BaseFragment<DetailedUserPresenter>(R.layout.detailed_user_fragment),
-    DetailedUserView {
+class DetailedUserFragment : BaseFragment(R.layout.detailed_user_fragment) {
 
-    @Inject
-    override lateinit var presenterProvider: Provider<DetailedUserPresenter>
-
-    override val presenter: DetailedUserPresenter by moxyPresenter { presenterProvider.get() }
+    override val viewModel: DetailedUserViewModel
+        get() {
+            TODO()
+        }
 
     private val args: DetailedUserFragmentArgs by navArgs()
 
@@ -42,17 +38,17 @@ class DetailedUserFragment : BaseFragment<DetailedUserPresenter>(R.layout.detail
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        presenter.login = args.login
+        viewModel.login = args.login
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.getDetailedUser()
+        viewModel.getDetailedUser()
     }
 
-    override fun showData(detailedUserEntity: DetailedUserEntity) {
-        detailedUserConstraintLayout.setIsVisible(true)
+    fun showData(detailedUserEntity: DetailedUserEntity) {
+        detailedUserConstraintLayout.isVisible = true
 
         Glide.with(this)
             .load(detailedUserEntity.avatarUrl)

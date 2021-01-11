@@ -1,30 +1,34 @@
 package com.example.githubapitest.presentation.ui.base
 
+import android.os.Bundle
 import android.util.TypedValue
+import android.view.View
 import android.widget.TextView
 import androidx.annotation.IntRange
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 import com.example.githubapitest.R
 import com.google.android.material.snackbar.Snackbar
-import moxy.MvpAppCompatFragment
 import javax.inject.Provider
 
 
-abstract class BaseFragment<P : BasePresenter<*>>(layoutId: Int) :
-    MvpAppCompatFragment(layoutId),
-    BaseView {
+abstract class BaseFragment(@LayoutRes layoutId: Int): Fragment(layoutId) {
+    protected abstract val viewModel: BaseViewModel
 
-    abstract var presenterProvider: Provider<P>
 
-    protected abstract val presenter: P
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+//        viewModel.
+    }
 
-    override fun showSnackbar(message: String) {
+/*    override fun showSnackbar(message: String) {
         getSnackBar(message, Snackbar.LENGTH_SHORT)?.show()
     }
 
     override fun showSnackbarWithAction(message: String, actionName: String, action: () -> Unit) {
         getSnackBar(message, Snackbar.LENGTH_INDEFINITE)?.setAction(actionName) { action.invoke() }
             ?.show()
-    }
+    }*/
 
 
     private fun getSnackBar(

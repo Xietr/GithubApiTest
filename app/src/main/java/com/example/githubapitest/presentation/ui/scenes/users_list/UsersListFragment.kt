@@ -4,30 +4,21 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubapitest.R
-import com.example.githubapitest.domain.entities.UserEntity
 import com.example.githubapitest.presentation.App
 import com.example.githubapitest.presentation.ui.adapters.UsersListAdapter
 import com.example.githubapitest.presentation.ui.base.BaseFragment
-import com.example.githubapitest.presentation.ui.extensions.setIsVisible
-import com.example.githubapitest.presentation.ui.listeners.LinearPaginationScrollListener
 import kotlinx.android.synthetic.main.users_list_fragment.*
-import moxy.ktx.moxyPresenter
-import javax.inject.Inject
-import javax.inject.Provider
 
 
-class UsersListFragment : BaseFragment<UsersListPresenter>(R.layout.users_list_fragment),
-    UsersListView {
+class UsersListFragment : BaseFragment(R.layout.users_list_fragment) {
 
-    @Inject
-    override lateinit var presenterProvider: Provider<UsersListPresenter>
+    override val viewModel: UsersListViewModel
+        get() {
+            TODO()
+        }
 
-    override val presenter: UsersListPresenter by moxyPresenter { presenterProvider.get() }
-
-    private val adapter: UsersListAdapter by lazy { UsersListAdapter(presenter::onItemClicked) }
+    private val adapter: UsersListAdapter by lazy { UsersListAdapter(viewModel::onItemClicked) }
 
 
     override fun onAttach(context: Context) {
@@ -37,7 +28,7 @@ class UsersListFragment : BaseFragment<UsersListPresenter>(R.layout.users_list_f
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
+//        setupRecyclerView()
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -57,7 +48,7 @@ class UsersListFragment : BaseFragment<UsersListPresenter>(R.layout.users_list_f
         )
     }
 
-    override fun updateAdapter(users: List<UserEntity>) {
+    /*override fun updateAdapter(users: List<UserEntity>) {
         adapter.submitList(users.toList())//to pass the check of a new list
     }
 
@@ -82,7 +73,7 @@ class UsersListFragment : BaseFragment<UsersListPresenter>(R.layout.users_list_f
             )
         }
     }
-
+*/
 
     companion object {
         const val LIST_STATE_KEY = "listStateKey"

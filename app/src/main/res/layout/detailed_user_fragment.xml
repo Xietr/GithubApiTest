@@ -26,7 +26,8 @@
                 android:minHeight="100dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_github_logo" />
+                tools:src="@drawable/ic_github_logo"
+                tools:ignore="ContentDescription"/>
 
             <TextView
                 android:id="@+id/detailedUserName"
@@ -83,12 +84,11 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/ic_work"
                 android:drawablePadding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/detailedUserBlog"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detailedUserBio" />
+                app:layout_constraintTop_toBottomOf="@+id/detailedUserBio" app:drawableStartCompat="@drawable/ic_work"/>
 
             <TextView
                 android:id="@+id/detailedUserBlog"
@@ -97,12 +97,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/ic_link"
                 android:drawablePadding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/detailedUserLocation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detailedUserCompany" />
+                app:layout_constraintTop_toBottomOf="@+id/detailedUserCompany"
+                app:drawableStartCompat="@drawable/ic_link"/>
 
             <TextView
                 android:id="@+id/detailedUserLocation"
@@ -111,12 +111,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/ic_location"
                 android:drawablePadding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/detailedUserCreatedAndUpdated"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detailedUserBlog" />
+                app:layout_constraintTop_toBottomOf="@+id/detailedUserBlog"
+                app:drawableStartCompat="@drawable/ic_location"/>
 
             <TextView
                 android:id="@+id/detailedUserCreatedAndUpdated"
@@ -137,12 +137,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/ic_people"
                 android:drawablePadding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/detailedUserEmail"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detailedUserCreatedAndUpdated" />
+                app:layout_constraintTop_toBottomOf="@+id/detailedUserCreatedAndUpdated"
+                app:drawableStartCompat="@drawable/ic_people"/>
 
             <TextView
                 android:id="@+id/detailedUserEmail"
@@ -151,12 +151,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="8dp"
                 app:layout_constraintBottom_toTopOf="@id/detailedUserTwitter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detailedUserFollowersAndFollowing" />
+                app:layout_constraintTop_toBottomOf="@+id/detailedUserFollowersAndFollowing"
+                app:drawableStartCompat="@drawable/ic_email"/>
 
             <TextView
                 android:id="@+id/detailedUserTwitter"
@@ -165,12 +165,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/ic_twitter"
                 android:drawablePadding="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detailedUserEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/detailedUserEmail"
+                app:drawableStartCompat="@drawable/ic_twitter"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
